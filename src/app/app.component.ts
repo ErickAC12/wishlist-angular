@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
 import { WishFilterComponent } from './wish-filter/wish-filter.component';
+import { WishListItemComponent } from './wish-list-item/wish-list-item.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule, WishListComponent, AddWishFormComponent, WishFilterComponent],
+  imports: [RouterOutlet, CommonModule, FormsModule, WishListComponent, AddWishFormComponent, WishFilterComponent, WishListItemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,5 +22,5 @@ export class AppComponent {
     new WishItem('Find grass that cuts itself')
   ]
 
-  filter: any = () => { };
+  filter: any;
 }
