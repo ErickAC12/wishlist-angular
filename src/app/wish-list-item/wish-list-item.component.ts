@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import events from '../../shared/services/EventService';
 
 @Component({
   selector: 'wish-list-item',
@@ -13,8 +14,11 @@ export class WishListItemComponent {
   @Input() fulfilled!: boolean;
   @Output() fulfilledChange = new EventEmitter<boolean>();
 
+  removeWish() {
+    events.emit('removeWish', this.wishText);
+  }
+
   get cssClasses() {
-    //return this.fulfilled ? ['strikeout text-muted'] : [];
     return { 'strikeout text-muted': this.fulfilled };
   }
 

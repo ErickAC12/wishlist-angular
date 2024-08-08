@@ -7,6 +7,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
 import { WishFilterComponent } from './wish-filter/wish-filter.component';
 import { WishListItemComponent } from './wish-list-item/wish-list-item.component';
+import events from '../shared/services/EventService';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,11 @@ import { WishListItemComponent } from './wish-list-item/wish-list-item.component
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  constructor() {
+    events.listen('removeWish', (wish: any) => {
+      console.log(wish);
+    })
+  }
   items: WishItem[] = [
     new WishItem('Learn Angular'),
     new WishItem('Get Coffee', true),
