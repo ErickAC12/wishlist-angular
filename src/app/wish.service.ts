@@ -11,7 +11,7 @@ export class WishService {
   constructor(private http: HttpClient) { }
 
   getWishes() {
-    return this.http.get('ishes.json').pipe(catchError(this.handleError));
+    return this.http.get('wishes.json').pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -1,1 +1,1 @@
-# Wishlist made with Angular
+# Wishlist made with Angular, Typescript and Bootstrap.
