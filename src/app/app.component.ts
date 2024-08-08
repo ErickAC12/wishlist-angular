@@ -7,7 +7,9 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
 import { WishFilterComponent } from './wish-filter/wish-filter.component';
 import { WishListItemComponent } from './wish-list-item/wish-list-item.component';
-import events from '../shared/services/EventService';
+import { EventService } from '../shared/services/EventService';
+import { WishService } from './wish.service';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +18,21 @@ import events from '../shared/services/EventService';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  constructor() {
+export class AppComponent implements OnInit {
+  items!: WishItem[];
+
+  constructor(events: EventService, private wishService: WishService) {
     events.listen('removeWish', (wish: any) => {
       let index = this.items.indexOf(wish);
       this.items.splice(index, 1);
     })
   }
-  items: WishItem[] = [
-    new WishItem('Learn Angular'),
-    new WishItem('Get Coffee', true),
-    new WishItem('Find grass that cuts itself')
-  ]
+
+  ngOnInit(): void {
+    this.wishService.getWishes().subscribe((data: any) => {
+      this.items = data;
+    })
+  }
 
   filter: any;
 }
